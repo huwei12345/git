@@ -1,5 +1,5 @@
 #include"elemap.h"
-//ÕâÐ©º¯ÊýÐí¶à¶¼ÐèÒª½çÃæ£¬À´ÊäÈë»òÕßÑ¡ÔñÑ¡Ïî
+//ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à¶¼ï¿½ï¿½Òªï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ñ¡ï¿½ï¿½
 void MysqlManager::mysqlsort()
 {
 	clock_t start=0,end=0;
@@ -18,7 +18,7 @@ void MysqlManager::mysqlsort()
 		cout << "				0.quit" << endl;
 		cin >> c;
 		char b;
-		while ((b = getchar()) != '\n' && b != EOF);//ÇåÊäÈë»º³åÇø
+		while ((b = getchar()) != '\n' && b != EOF);//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
 		if (c >= '0' && c <= '9')
 		{
 			c -= '0';
@@ -80,7 +80,7 @@ void MysqlManager::mysqlsort()
 
 void MysqlManager::mysqlsearch()
 {
-	//°´sqlÓï¾ä²éÑ¯£¬°´×Ö¶Î²éÑ¯
+	//ï¿½ï¿½sqlï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶Î²ï¿½Ñ¯
 	clock_t start=0, end=0;
 	double tm;
 	char b;
@@ -91,7 +91,7 @@ void MysqlManager::mysqlsearch()
 	int flag = 0;
 	while (1)
 	{
-		strcpy_s(query, 50, "select * from roadinfo where ");
+		strcpy(query,"select * from roadinfo where ");
 		char c;
 		cout << "						search result in ./search_record" << endl;
 		cout << "						1.search by LinkID" << endl;
@@ -110,26 +110,26 @@ void MysqlManager::mysqlsearch()
 			start = clock();
 			switch (c)
 			{
-			case 1://Ë³ÐòËÑË÷LinkID
+			case 1://Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½LinkID
 			{
 				cout << "please input you search LinkId" << endl;
 				//scanf_s("%u", &value);
 				cin >> value;
 				fg = 0;
-				while ((b = getchar()) != '\n' && b != EOF)//ÇåÊäÈë»º³åÇø
+				while ((b = getchar()) != '\n' && b != EOF)//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
 				{
 					if (b <= '0' || b >= '9')
 						fg = 1;
 				}
 				if (fg == 1)
 				{
-					cin.clear();////ÐÞ¸´ÊäÈëÁ÷,cin.fail=0
+					cin.clear();////ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,cin.fail=0
 					printf("please input correct num\n");
 					break;
 				}
 
-				sprintf_s(query,100,"%s LinkId=%s;", query, value);
-				res=m_mysql->query(query);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				sprintf(query,"%s LinkId=%s;", query, value);
+				res=m_mysql->query(query);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 2:
@@ -138,19 +138,19 @@ void MysqlManager::mysqlsearch()
 				//scanf_s("%u", &value);
 				cin >> value;
 				fg = 0;
-				while ((b = getchar()) != '\n' && b != EOF)//ÇåÊäÈë»º³åÇø
+				while ((b = getchar()) != '\n' && b != EOF)//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
 				{
 					if (b <= '0' || b >= '9')
 						fg = 1;
 				}
 				if (fg == 1)
 				{
-					cin.clear();////ÐÞ¸´ÊäÈëÁ÷,cin.fail=0
+					cin.clear();////ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,cin.fail=0
 					printf("please input correct num\n");
 					break;
 				}
-				sprintf_s(query, 100, "%s classnum=%s;", query, value);
-				res=m_mysql->query(query);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				sprintf(query,"%s classnum=%s;", query, value);
+				res=m_mysql->query(query);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 3:
@@ -159,10 +159,10 @@ void MysqlManager::mysqlsearch()
 				//scanf_s("%u", &value);
 				cin >> value;
 				fg = 0;
-				while ((b = getchar()) != '\n' && b != EOF)//ÇåÊäÈë»º³åÇø
+				while ((b = getchar()) != '\n' && b != EOF)//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
 				{}//cin.clear();
-				sprintf_s(query, 100, "%s frokroad=%s;", query, value);
-				res=m_mysql->query(query);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				sprintf(query,"%s frokroad=%s;", query, value);
+				res=m_mysql->query(query);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 4:
@@ -171,19 +171,19 @@ void MysqlManager::mysqlsearch()
 				//scanf_s("%u", &value);
 				cin >> value;
 				fg = 0;
-				while ((b = getchar()) != '\n' && b != EOF){}//ÇåÊäÈë»º³åÇø
-				sprintf_s(query, 100, "%s name='%s';", query, value);
-				res=m_mysql->query(query);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				while ((b = getchar()) != '\n' && b != EOF){}//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
+				sprintf(query,"%s name='%s';", query, value);
+				res=m_mysql->query(query);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
-			case 5://Óöµ½¿Õ¸ñ¾ÍÍ£Ö¹ÔõÃ´£¿£¿getline()
+			case 5://ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½Í£Ö¹ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½getline()
 			{
 				cout << "please input you search sql language" << endl;
 				//scanf_s("%u", &value);
 				cin.getline(value,200); //>> value;//getline()
 				fg = 0;
-				//while ((b = getchar()) != '\n' && b != EOF){}//ÇåÊäÈë»º³åÇø
-				res=m_mysql->query(value);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				//while ((b = getchar()) != '\n' && b != EOF){}//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
+				res=m_mysql->query(value);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 6:
@@ -192,9 +192,9 @@ void MysqlManager::mysqlsearch()
 				//scanf_s("%u", &value);
 				cin >> value;
 				fg = 0;
-				while ((b = getchar()) != '\n' && b != EOF) {}//ÇåÊäÈë»º³åÇø
-				sprintf_s(query, 100, "%s name='%s';", query, value);
-				result = m_mysql->query(query, 1);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë	
+				while ((b = getchar()) != '\n' && b != EOF) {}//ï¿½ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½ï¿½ï¿½
+				sprintf(query,"%s name='%s';", query, value);
+				result = m_mysql->query(query, 1);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½	
 				break;
 			}
 			case 0:
@@ -228,10 +228,10 @@ void MysqlManager::mysqlsearch()
 	}
 }
 
-//µ÷ÓÃwritefile
+//ï¿½ï¿½ï¿½ï¿½writefile
 void MysqlManager::mysqlupdate(const char* filename)
 {	
-	//´ÓmysqlÖÐ¶ÁÈ¡Êý¾Ý²¢Êä³öµ½charÎÄ¼þ
+	//ï¿½ï¿½mysqlï¿½Ð¶ï¿½È¡ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½charï¿½Ä¼ï¿½
 		ofstream fp;
 		fp.open(filename, ios::out | ios::trunc);
 		//FILE* fp;
@@ -242,7 +242,7 @@ void MysqlManager::mysqlupdate(const char* filename)
 		cout << filename << " file update success" << endl;
 }
 
-//mysql api¶ÁÈ¡2ÖÖ·½Ê½£¬Ò»ÖÖÒ»´ÎÈ«¶Á£¬Ò»ÖÖÒ»ÌõÒ»Ìõ¶Á£¬Ó¦Ò»ÌõÒ»Ìõ¶Á£¬²¢°´ÐÐÊä³ö
+//mysql apiï¿½ï¿½È¡2ï¿½Ö·ï¿½Ê½ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦Ò»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 bool MysqlManager::mysqlbupdate(const char* filename)
 {
@@ -281,7 +281,7 @@ bool MysqlManager::mysqlbupdate(const char* filename)
 		{
 			buf2[i] = (trshort >> ((1 - i) * 8)) & a;
 		}
-		//±ØÐë·´Ðò int->buf
+		//ï¿½ï¿½ï¿½ë·´ï¿½ï¿½ int->buf
 
 		//if (!(ret = fwrite(buf2, 2, 1, fp)))
 		fp.write(buf2, 2);
@@ -342,14 +342,14 @@ void MysqlManager::mysqlinsert()
 	char* value = new char[150];
 	char* name = new char[40];
 	int flag = 0;
-	strcpy_s(str, 100, "insert into roadinfo values(");
+	strcpy(str,"insert into roadinfo values(");
 	clock_t start=0, end=0;
 	double tm;
 	char b;
 	char c;
 	while (1)
 	{
-		strcpy_s(str, 100, "insert into roadinfo values(");
+		strcpy(str, "insert into roadinfo values(");
 		cout << "						1.insert by information " << endl;
 		cout << "						2.insert by sql language" << endl;
 		cout << "						0.quit" << endl;
@@ -372,12 +372,12 @@ void MysqlManager::mysqlinsert()
 				hasflag = hasflag ? 1 : 0;
 				//information record_size roadsize
 				int roadsize = strlen(name);
-				int record_size = 12 + roadsize+2;//2¶à³öÀ´µÄ 00 00
+				int record_size = 12 + roadsize+2;//2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 00 00
 				int information = ((hasflag & 0x01) << 7) + ((forkroad & 0x07) << 4) + (classnum & 0x0f);
-				sprintf_s(str,200, "%s%d,%d,%d,%d,%d,'%s',%d,%d);",str,LinkID,classnum,forkroad,hasflag, information,name, record_size,roadsize);
+				sprintf(str,"%s%d,%d,%d,%d,%d,'%s',%d,%d);",str,LinkID,classnum,forkroad,hasflag, information,name, record_size,roadsize);
 				int i = 0;
 				fg = 0;
-				m_mysql->execute(str);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				m_mysql->execute(str);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 2:
@@ -385,8 +385,8 @@ void MysqlManager::mysqlinsert()
 				cout << "please input your sql language" << endl;
 				cin.getline(value, 200);
 				fg = 0;
-				//µ÷ÕûsqlÓï¾ä
-				m_mysql->execute(value);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				//ï¿½ï¿½ï¿½ï¿½sqlï¿½ï¿½ï¿½
+				m_mysql->execute(value);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 0:
@@ -411,14 +411,14 @@ void MysqlManager::mysqldelete()
 	char* str = new char[200];
 	char* value = new char[150];
 	int flag = 0;
-	strcpy_s(str, 100, "delete from roadinfo where LinkID=");
+	strcpy(str,"delete from roadinfo where LinkID=");
 	clock_t start=0, end=0;
 	double tm;
 	char b;
 	char c;
 	while (1)
 	{
-		strcpy_s(str, 100, "delete from roadinfo where LinkID=");
+		strcpy(str,"delete from roadinfo where LinkID=");
 		cout << "						1.delete by LinkID " << endl;
 		cout << "						2.delete by sql language" << endl;
 		cout << "						0.quit" << endl;
@@ -436,8 +436,8 @@ void MysqlManager::mysqldelete()
 				cout << "please input LinkID to delete:" << endl;
 				cin.getline(value, 200);
 				fg = 0;
-				sprintf_s(str,200, "%s%s;", str, value);
-				m_mysql->execute(str);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				sprintf(str,"%s%s;", str, value);
+				m_mysql->execute(str);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 2:
@@ -445,7 +445,7 @@ void MysqlManager::mysqldelete()
 				cout << "please input your sql language" << endl;
 				cin.getline(value, 200);
 				fg = 0;
-				m_mysql->execute(value);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				m_mysql->execute(value);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 0:
@@ -476,14 +476,14 @@ void MysqlManager::mysqlmodify()
 	char* value = new char[150];
 	char* value2 = new char[150];
 	int flag = 0;
-	strcpy_s(str, 100, "update roadinfo set ");
+	strcpy(str,"update roadinfo set ");
 	clock_t start = 0, end = 0;
 	double tm;
 	char b;
 	char c;
 	while (1)
 	{
-		strcpy_s(str, 100, "update roadinfo set ");
+		strcpy(str,"update roadinfo set ");
 		cout << "						1.update by LinkID " << endl;
 		cout << "						2.update by sql language" << endl;
 		cout << "						0.quit" << endl;
@@ -504,8 +504,8 @@ void MysqlManager::mysqlmodify()
 				cout << "Usage: frokroad=3,name='hello'" << endl;
 				cin.getline(value2, 200);
 				fg = 0;
-				sprintf_s(str, 200, "%s %s where LinkID=%s;", str,value2, value);
-				m_mysql->execute(str);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				sprintf(str,"%s %s where LinkID=%s;", str,value2, value);
+				m_mysql->execute(str);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 2:
@@ -513,7 +513,7 @@ void MysqlManager::mysqlmodify()
 				cout << "please input your sql language" << endl;
 				cin.getline(value, 200);
 				fg = 0;
-				m_mysql->execute(value);//»ñÈ¡½á¹û£¬²¢ÏÔÊ¾»ò´æÈë
+				m_mysql->execute(value);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				break;
 			}
 			case 0:
@@ -574,40 +574,40 @@ bool MysqlManager::mysqlshowall()
 bool MysqlManager::mysqlread(const char* filename)
 {
 	char* str = new char[1024 * 1024];
-	//ÈôÒª²éÑ¯ÐèÒªÖØÐÂ½¨Á¢Á¬½Ó
+	//ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½Òªï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (!m_mysql->execute("delete from roadinfo;"))
 		return false;
-	sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+	sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 	//(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize)
 	clock_t start = clock();
 	ifstream fp;
 	//FILE* fp;
-	//int err = fopen_s(&fp, filename, "rb");//´ò¿ªÎÄ¼þ
+	//int err = fopen_s(&fp, filename, "rb");//ï¿½ï¿½ï¿½Ä¼ï¿½
 	fp.open(filename, ios::binary);
 	if (!fp)
 	{
 		perror("open file error");
 		return false;
 	}
-	char buf1[2];//±£´æ2×Ö½ÚÐÅÏ¢
-	char buf2[4];//±£´æ4×Ö½ÚÐÅÏ¢
-	char buf3[100];//±£´æµÀÂ·Ãû×Ö
+	char buf1[2];//ï¿½ï¿½ï¿½ï¿½2ï¿½Ö½ï¿½ï¿½ï¿½Ï¢
+	char buf2[4];//ï¿½ï¿½ï¿½ï¿½4ï¿½Ö½ï¿½ï¿½ï¿½Ï¢
+	char buf3[100];//ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½
 
-	node* p = new node();//´´½¨node
+	node* p = new node();//ï¿½ï¿½ï¿½ï¿½node
 	char* name = new char[100];
 	p->name = name;
 	long long ret = 0;
-	//EOFÊÇÎÄ±¾ÎÄ¼þ½áÊøµÄ±êÖ¾¡£ÔÚÎÄ±¾ÎÄ¼þÖÐ£¬Êý¾ÝÊÇÒÔ×Ö·ûµÄASC¢ò´úÂëÖµµÄÐÎÊ½´æ·Å£¬
-	//ASCII´úÂëÖµµÄ·¶Î§ÊÇ0¡«255£¬EOFµÄ16½øÖÆ´úÂëÎª0xFF(Ê®½øÖÆÎª-1)£¬Òò´Ë¿ÉÒÔÓÃEOF×÷ÎªÎÄ¼þ½áÊø±êÖ¾¡£
-	//µ«ÊÇÈç¹ûÎÄ¼þ¸ñÊ½Îª¶þ½øÖÆÎÄ¼þ£¬¾Í²»ÊÊºÏÓÃEOFÀ´ÅÐ¶ÏÎÄ¼þµ½´ï½áÎ²ÁË£¬
-	//ÒòÎªÓÐ¿ÉÄÜÎÄ¼þÖÐÒ²´æÔÚÒ»¸öÊý¾ÝÎª0xFF£¬ÕâÑùµ±¶ÁÈ¡µ½Õâ¸öÊý¾ÝÊÇ£¬¾ÍÎÞ·¨ÅÐ¶ÏÊÇµ½´ïÎÄ¼þ½áÎ²
-	//»¹ÊÇ¶ÁÈ¡µ½µÄÊÇÎÄ¼þµÄÄÚÈÝÁË¡£
+	//EOFï¿½ï¿½ï¿½Ä±ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½Ä¼ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ASCï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Å£ï¿½
+	//ASCIIï¿½ï¿½ï¿½ï¿½Öµï¿½Ä·ï¿½Î§ï¿½ï¿½0ï¿½ï¿½255ï¿½ï¿½EOFï¿½ï¿½16ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½Îª0xFF(Ê®ï¿½ï¿½ï¿½ï¿½Îª-1)ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½EOFï¿½ï¿½Îªï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ê½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½Êºï¿½ï¿½ï¿½EOFï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½Ë£ï¿½
+	//ï¿½ï¿½Îªï¿½Ð¿ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0xFFï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½Ð¶ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Î²
+	//ï¿½ï¿½ï¿½Ç¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½
 	int i = 0;
 	while (!fp.eof())
 	{
 		fp.read(buf1, 2);
 		ret = fp.gcount();
-		//ret = fread(buf1, 2, 1, fp);//¶Á¡°³¤¶È¡±
+		//ret = fread(buf1, 2, 1, fp);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½
 		unsigned short size = 0;
 		//printf("%d\n", ret);
 		if (ret == 2)
@@ -619,10 +619,10 @@ bool MysqlManager::mysqlread(const char* filename)
 			//cout << size << endl;
 			size -= 2;
 			fp.read(buf2, 4);
-			//if (ret = fread(buf2, 4, 1, fp))//¶ÁµÀÂ·±àºÅ
+			//if (ret = fread(buf2, 4, 1, fp))//ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
 			if ((ret = fp.gcount()) == 4)
 			{
-				if (ret != 4)//´íÎó´¦Àí
+				if (ret != 4)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				{
 					delete(p);
 					perror("get LinkId error");
@@ -636,7 +636,7 @@ bool MysqlManager::mysqlread(const char* filename)
 				p->LinkID = LinkId;
 				//cout << LinkId << endl;
 			}
-			//if (ret = fread(buf1, 2, 1, fp))//¶ÁµÀÂ·Ãû³Æ³¤¶È
+			//if (ret = fread(buf1, 2, 1, fp))//ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½
 			fp.read(buf1, 2);
 			if ((ret = fp.gcount()) == 2)
 			{
@@ -653,7 +653,7 @@ bool MysqlManager::mysqlread(const char* filename)
 				return false;
 			}
 
-			//if (ret = fread(buf2, 4, 1, fp))//¶ÁµÀÂ·Ïà¹ØÐÅÏ¢
+			//if (ret = fread(buf2, 4, 1, fp))//ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 			fp.read(buf2, 4);
 			if ((ret = fp.gcount()) == 4)
 			{
@@ -675,7 +675,7 @@ bool MysqlManager::mysqlread(const char* filename)
 				perror("get road information error");
 				return false;
 			}
-			//if (ret = fread(buf3, size, 1, fp))//»ñÈ¡µÀÂ·Ãû³Æ
+			//if (ret = fread(buf3, size, 1, fp))//ï¿½ï¿½È¡ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½
 			fp.read(buf3, size);
 			if (size != 0)
 			{
@@ -684,37 +684,37 @@ bool MysqlManager::mysqlread(const char* filename)
 					delete(p);
 					cout << "rest size:" << size << endl;
 					perror("get name error");
-					//×¢ÒâÊÍ·ÅÄÚ´æÔÙÍË³ö
+					//×¢ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
 					return false;
 				}
 				size = 0;
 				size_t len = strlen(buf3);
-				strcpy_s(name, strlen(buf3) + 1, buf3);
+				strcpy(name,buf3);
 				//printf("len:%d\n", len);
 				name[len] = '\0';
 			}
 			else
 			{
-				strcpy_s(name, 10, "null");
+				strcpy(name,"null");
 			}
-			//¸ñÊ½»¯Ò»ÌõÊý¾Ý£¬²¢¼ÓÈësqlÓï¾ä
-			//sprintf_s(str, 200,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
+			//ï¿½ï¿½Ê½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sqlï¿½ï¿½ï¿½
+			//sprintf(str,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
 			//	,record[i]->roadsize,record[i]->hasflag,record[i]->forkroad,record[i]->classnum,record[i]->information,record[i]->name);
 
 		// record_size Linkid    roadsize   hasflag  forkroad   classnum       roadname
 			if (i > 0 && i % 1000 == 0)
 			{
-				sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
+				sprintf(str,"%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
 					, p->forkroad, p->hasflag, p->information, p->name, p->record_size, p->roadsize);
-				if (m_mysql->execute(str) == false)//²åÈëÊý¾Ý,ÒÑ¾­ÓÐÁË
+				if (m_mysql->execute(str) == false)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				{
 					cout << "data already exists" << endl;
 					return false;
 				}
-				sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+				sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 			}
 			else
-				sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,'%s',%d,%d),", str, p->LinkID, p->classnum
+				sprintf(str,"%s(%d,%d,%d,%d,%d,'%s',%d,%d),", str, p->LinkID, p->classnum
 					, p->forkroad, p->hasflag, p->information, p->name, p->record_size, p->roadsize);
 			i++;
 		}
@@ -728,7 +728,7 @@ bool MysqlManager::mysqlread(const char* filename)
 	{
 		int k = strlen(str);
 		str[k - 1] = ';';
-		if (m_mysql->execute(str) == false)//²åÈëÊý¾Ý,ÒÑ¾­ÓÐÁË
+		if (m_mysql->execute(str) == false)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			cout << "insert error" << endl;
 			return false;
@@ -770,7 +770,7 @@ bool MysqlManager::writefile(QueryResult* pResult,const char* pathname)
 		p.record_size = pRow[6].getInt16();
 		p.roadsize = pRow[7].getInt16();
 
-		//½«pÐ´ÈëÎÄ¼þ
+		//ï¿½ï¿½pÐ´ï¿½ï¿½ï¿½Ä¼ï¿½
 		fp << setw(10) << p.LinkID << setw(10) << p.record_size << setw(10) << p.roadsize\
 			<< setw(10) << p.hasflag << setw(10) << p.forkroad << setw(10) << p.classnum
 			<< setw(25) << temp << endl;
@@ -809,7 +809,7 @@ bool MysqlManager::writefile(MYSQL_RES* result, const char* pathname,int k)
 		p.record_size = atoi(pRow[6]);
 		p.roadsize = atoi(pRow[7]);
 
-		//½«pÐ´ÈëÎÄ¼þ
+		//ï¿½ï¿½pÐ´ï¿½ï¿½ï¿½Ä¼ï¿½
 		fp << setw(10) << p.LinkID << setw(10) << p.record_size << setw(10) << p.roadsize\
 			<< setw(10) << p.hasflag << setw(10) << p.forkroad << setw(10) << p.classnum
 			<< setw(25) << temp << endl;
@@ -841,10 +841,10 @@ void MysqlManager::readRecord(Record& record)
 		p->hasflag = pRow[3].getBool();
 		p->information = pRow[4].getInt32();
 
-		//ÈçºÎÔÚÍË³öÊ±Ïú»ÙÄÚ´æÕ¼ÓÃ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Õ¼ï¿½ï¿½
 		size_t len = strlen(pRow[5].getString().c_str());
 		char* name = new char[len + 1];
-		strcpy_s(name, len + 1, pRow[5].getString().c_str());
+		strcpy(name,pRow[5].getString().c_str());
 		//printf("len:%d\n", len);
 		name[len] = '\0';
 

@@ -1,21 +1,25 @@
-#pragma once
-//mysqlÈÎÎñ¶ÓÁÐ
+
+#ifndef TASKLIST_H
+#define TASKLIST_H
+//mysqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include "MysqlTask.h"
 #include <stdint.h>
 
-#define MAX_TASK_NUM 1000
 
+
+#define MAX_TASK_NUM 1000
 class CTaskList
 {
 public:
     CTaskList();
     ~CTaskList(void);
 
-    bool push(IMysqlTask* poTask);                  // Âß¼­Ïß³ÌÐÞ¸Ä 
-    IMysqlTask* pop();				                // Êý¾Ý¿âÏß³ÌÐÞ¸Ä 
+    bool push(IMysqlTask* poTask);                  // ï¿½ß¼ï¿½ï¿½ß³ï¿½ï¿½Þ¸ï¿½ 
+    IMysqlTask* pop();				                // ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ß³ï¿½ï¿½Þ¸ï¿½ 
 
 private:
-    uint16_t            m_uReadIndex;               // Êý¾Ý¿âÏß³ÌÐÞ¸Ä 
-    uint16_t            m_uWriteIndex;              // Âß¼­Ïß³ÌÐÞ¸Ä   
+    uint16_t            m_uReadIndex;               // ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ß³ï¿½ï¿½Þ¸ï¿½ 
+    uint16_t            m_uWriteIndex;              // ï¿½ß¼ï¿½ï¿½ß³ï¿½ï¿½Þ¸ï¿½   
     IMysqlTask* m_pTaskNode[MAX_TASK_NUM];
 };
+#endif

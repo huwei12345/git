@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MYSQLTASK_H
+#define MYSQLTASK_H
 
 enum EMysqlError
 {
@@ -21,3 +22,5 @@ public:
     virtual void reply() = 0;
     virtual void release() { delete this; };
 };
+
+#endif

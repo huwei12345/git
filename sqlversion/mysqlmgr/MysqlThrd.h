@@ -1,5 +1,7 @@
-#pragma once
-//Êý¾Ý¿âÏß³Ì£¨Ò»¸ö£©
+#ifndef MYSQLTHRD_H
+#define MYSQLTHRD_H
+
+//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ß³Ì£ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
 #include <condition_variable> 
 #include <thread>
 
@@ -45,3 +47,5 @@ private:
 };
 
 
+
+#endif

@@ -1,10 +1,11 @@
-//mysqlÁ¬?Ó³?
-//#pragma once
-#ifndef CMYSQL_DEFINE
-#define CMYSQL_DEFINE
+//mysqlï¿½ï¿½?Ó³?
+#ifndef CMYSQL_DEFINE_H
+#define CMYSQL_DEFINE_H
 #include "mysql.h"
 #include"QueryResult.h"
 #include<iostream>
+#include<stdio.h>
+#include<string.h>
 class CMysql//mysql??
 {
 private:
@@ -14,7 +15,7 @@ private:
 	std::string strUser;
 	std::string strPwd;
 	std::string strDBName;
-	//Á¬??
+	//ï¿½ï¿½??
 public:
 	
 	CMysql(void);

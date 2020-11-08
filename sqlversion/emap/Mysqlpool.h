@@ -1,45 +1,46 @@
-#pragma once
+#ifndef MYSQLPOOL_H
+#define MYSQLPOOL_H
 #include"elemap.h"
-void mysql(Record& record)//ÓÃÓÚ°æ±¾1£¬½«RecordÐ´Èëµ½mysql¡£?
+void mysql(Record& record)//ï¿½ï¿½ï¿½Ú°æ±¾1ï¿½ï¿½ï¿½ï¿½RecordÐ´ï¿½ëµ½mysqlï¿½ï¿½?
 {
 	string host("localhost");
 	string user("root");
 	string pwd("123456");
 	string dbName("roadinfo");
-	CMysqlManager mgr;//mgrÖÐ°üº¬CMysql,CMysql²»¿É¼û£¬´ËÀà½öÓÃÓÚÒ»¿ªÊ¼³õÊ¼»¯Êý¾Ý¿â£¬³õÊ¼»¯ºó»á¹Ø±ÕÁ¬½Ó
-	if (mgr.init(host.c_str(), user.c_str(), pwd.c_str(), dbName.c_str()) == false)//½¨±í
+	CMysqlManager mgr;//mgrï¿½Ð°ï¿½ï¿½ï¿½CMysql,CMysqlï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â£¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½
+	if (mgr.init(host.c_str(), user.c_str(), pwd.c_str(), dbName.c_str()) == false)//ï¿½ï¿½ï¿½ï¿½
 		return;
 	char* str = new char[1024*1024];
-	//ÈôÒª²éÑ¯ÐèÒªÖØÐÂ½¨Á¢Á¬½Ó
+	//ï¿½ï¿½Òªï¿½ï¿½Ñ¯ï¿½ï¿½Òªï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::shared_ptr<CMysql> cmysql=static_cast<std::shared_ptr<CMysql>>(new CMysql());
 	cmysql->init(host,user,pwd,dbName);
 	cmysql->execute("delete from roadinfo;");
 
-	sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+	sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 	//(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize)
 	int size=record.size();
 	clock_t start=clock();
 	for (int i = 0; i < size; ++i)
 	{
 		node* p = record[i];
-		//¸ñÊ½»¯Ò»ÌõÊý¾Ý£¬²¢¼ÓÈësqlÓï¾ä
-		//sprintf_s(str, 200,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
+		//ï¿½ï¿½Ê½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sqlï¿½ï¿½ï¿½
+		//sprintf(str,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
 		//	,record[i]->roadsize,record[i]->hasflag,record[i]->forkroad,record[i]->classnum,record[i]->information,record[i]->name);
 		
 	// record_size Linkid    roadsize   hasflag  forkroad   classnum       roadname
 		if ((i>0&&i % 1000 == 0)||i==size-1)
 		{
-			sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
+			sprintf(str,"%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
 				, p->forkroad, p->hasflag, p->information, p->name, p->record_size, p->roadsize);
-			if (cmysql->execute(str) == false)//²åÈëÊý¾Ý,ÒÑ¾­ÓÐÁË
+			if (cmysql->execute(str) == false)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				cout << "insert error" << endl;
 				break;
 			}
-			sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+			sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 		}
 		else
-			sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,%s,%d,%d),", str, p->LinkID, p->classnum
+			sprintf(str,"%s(%d,%d,%d,%d,%d,%s,%d,%d),", str, p->LinkID, p->classnum
 				, p->forkroad, p->hasflag, p->information, p->name, p->record_size, p->roadsize);
 
 	}
@@ -49,3 +50,5 @@ void mysql(Record& record)//ÓÃÓÚ°æ±¾1£¬½«RecordÐ´Èëµ½mysql¡£?
 	delete[] str;
 	//mysql.~CMysql();
 }
+
+#endif

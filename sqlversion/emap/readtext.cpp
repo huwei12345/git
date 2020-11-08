@@ -1,38 +1,38 @@
 #include"elemap.h"
-//9.8:й╣ожcout╦Яй╫╩╞║╒c++нд╪Ч╤ах║ё╛╡╒я╖о╟вэ╫Аё╛nullptrнч╥╗сцcoutйДЁЖ
+//9.8:й╣О©╫О©╫coutО©╫О©╫й╫О©╫О©╫О©╫О©╫c++О©╫д╪О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫я╖о╟О©╫э╫Аё╛nullptrО©╫ч╥О©╫О©╫О©╫coutО©╫О©╫О©╫
 void Record::readtext(const char* filename)
 {
 	Record &record = *this;
 	record.clear();
 	ifstream fp;
 	//FILE* fp;
-	//int err = fopen_s(&fp, filename, "rb");//╢Р©╙нд╪Ч
+	//int err = fopen_s(&fp, filename, "rb");//О©╫О©╫О©╫д╪О©╫
 	fp.open(filename, ios::binary);
 	if (!fp)
 	{
 		perror("open file error");
 		return;
 	}
-	char buf1[2];//╠ё╢Ф2вж╫зпео╒
-	char buf2[4];//╠ё╢Ф4вж╫зпео╒
-	char buf3[100];//╠ё╢Ф╣юб╥цШвж
+	char buf1[2];//О©╫О©╫О©╫О©╫2О©╫ж╫О©╫О©╫О©╫о╒
+	char buf2[4];//О©╫О©╫О©╫О©╫4О©╫ж╫О©╫О©╫О©╫о╒
+	char buf3[100];//О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫
 	long long ret = 0;
 	node* p=nullptr;
-	//EOFйгнд╠╬нд╪Ч╫АйЬ╣д╠Йж╬║ётзнд╠╬нд╪Чжпё╛йЩ╬щйгртвж╥Ш╣дASC╒Р╢ЗбКж╣╣дпнй╫╢Ф╥её╛
-	//ASCII╢ЗбКж╣╣д╥╤н╖йг0║╚255ё╛EOF╣д16╫Ьжф╢ЗбКн╙0xFF(й╝╫Ьжфн╙-1)ё╛рР╢к©иртсцEOFвВн╙нд╪Ч╫АйЬ╠Йж╬║ё
-	//╣╚йгхГ╧Шнд╪Ч╦Яй╫н╙╤Ч╫Ьжфнд╪Чё╛╬м╡╩йй╨осцEOFю╢еп╤онд╪Ч╣╫╢О╫Ан╡акё╛
-	//рРн╙сп©идэнд╪Чжпр╡╢Фтзр╩╦ЖйЩ╬щн╙0xFFё╛уБяЫ╣╠╤ах║╣╫уБ╦ЖйЩ╬щйгё╛╬мнч╥╗еп╤ойг╣╫╢Онд╪Ч╫Ан╡
-	//╩╧йг╤ах║╣╫╣дйгнд╪Ч╣ддзхщак║ё
+	//EOFО©╫О©╫О©╫д╠О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫д╠О©╫ж╬О©╫О©╫О©╫О©╫О©╫д╠О©╫О©╫д╪О©╫О©╫пёО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╥О©╫О©╫О©╫ASCО©╫О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫О©╫й╫О©╫О©╫еёО©╫
+	//ASCIIО©╫О©╫О©╫О©╫ж╣О©╫д╥О©╫н╖О©╫О©╫0О©╫О©╫255О©╫О©╫EOFО©╫О©╫16О©╫О©╫О©╫ф╢О©╫О©╫О©╫н╙0xFF(й╝О©╫О©╫О©╫О©╫н╙-1)О©╫О©╫О©╫О©╫к©О©╫О©╫О©╫О©╫О©╫EOFО©╫О©╫н╙О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╬О©╫О©╫
+	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫й╫н╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫О©╫м╡О©╫О©╫й╨О©╫О©╫О©╫EOFО©╫О©╫О©╫п╤О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫н╡О©╫кёО©╫
+	//О©╫О©╫н╙О©╫п©О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫р╡О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫н╙0xFFО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫гёО©╫О©╫О©╫О©╫ч╥О©╫О©╫п╤О©╫О©╫г╣О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫н╡
+	//О©╫О©╫О©╫г╤О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫к║О©╫
 	while (!fp.eof())
 	{
 		fp.read(buf1,2);
 		ret = fp.gcount();
-		//ret = fread(buf1, 2, 1, fp);//╤а║╟Ё╓╤х║╠
+		//ret = fread(buf1, 2, 1, fp);//О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫
 		unsigned short size = 0;
 		//printf("%d\n", ret);
 		if (ret == 2)
 		{
-			p = new node();//╢╢╫╗node
+			p = new node();//О©╫О©╫О©╫О©╫node
 			p->name = nullptr;
 			size = trans2(buf1);
 			p->record_size = size;
@@ -41,10 +41,10 @@ void Record::readtext(const char* filename)
 			//cout << size << endl;
 			size -= 2;
 			fp.read(buf2, 4);
-			//if (ret = fread(buf2, 4, 1, fp))//╤а╣юб╥╠Ю╨е
+			//if (ret = fread(buf2, 4, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫
 			if((ret=fp.gcount())==4)
 			{
-				if (ret != 4)//╢МнС╢╕юМ
+				if (ret != 4)//О©╫О©╫О©╫О©╫О©╫О©╫
 				{
 					delete(p);
 					perror("get LinkId error");
@@ -61,7 +61,7 @@ void Record::readtext(const char* filename)
 				p->LinkID = LinkId;
 				//cout << LinkId << endl;
 			}
-			//if (ret = fread(buf1, 2, 1, fp))//╤а╣юб╥цШЁфЁ╓╤х
+			//if (ret = fread(buf1, 2, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫фЁО©╫О©╫О©╫
 			fp.read(buf1, 2);
 			if ((ret = fp.gcount()) == 2)
 			{
@@ -81,7 +81,7 @@ void Record::readtext(const char* filename)
 				exit(1);
 			}
 
-			//if (ret = fread(buf2, 4, 1, fp))//╤а╣юб╥оЮ╧ьпео╒
+			//if (ret = fread(buf2, 4, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫о╒
 			fp.read(buf2, 4);
 			if ((ret = fp.gcount()) == 4)
 			{
@@ -106,7 +106,7 @@ void Record::readtext(const char* filename)
 				record.clear();
 				exit(1);
 			}
-			//if (ret = fread(buf3, size, 1, fp))//╩Ях║╣юб╥цШЁф
+			//if (ret = fread(buf3, size, 1, fp))//О©╫О©╫х║О©╫О©╫б╥О©╫О©╫О©╫О©╫
 			fp.read(buf3, size);
 			if(size!=0)
 			{
@@ -115,7 +115,7 @@ void Record::readtext(const char* filename)
 					delete(p);
 					cout << "rest size:" << size << endl;
 					perror("get name error");
-					//в╒рБйм╥едз╢ФтымкЁЖ
+					//в╒О©╫О©╫О©╫м╥О©╫О©╫з╢О©╫О©╫О©╫О©╫кЁО©╫
 					for (size_t j = 0; j < record.size(); j++)
 						delete(record[j]);
 					record.clear();
@@ -124,14 +124,14 @@ void Record::readtext(const char* filename)
 				size = 0;
 				size_t len = strlen(buf3);
 				char* name = new char[len + 1];
-				strcpy_s(name, strlen(buf3) + 1, buf3);
+				strcpy(name, buf3);
 				//printf("len:%d\n", len);
 				name[len] = '\0';
 				p->name = name;
 			}
-#ifdef DE //╣Вйт
+#ifdef DE //О©╫О©╫О©╫О©╫
 			show(p);
-			//break;╤ар╩лУ
+			//break;О©╫О©╫р╩О©╫О©╫
 			delete p;
 #else
 			this->push_back(p);
@@ -149,12 +149,12 @@ void Record::readtext(const char* filename)
 
 
 
-//╢снд╪Ч╤а╣╫mysql
+//О©╫О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫mysql
 void MysqlManager::readtexttomysql(const char* filename)
 {
 	char* str = new char[1024 * 1024];
 	clock_t start = clock();
-	sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+	sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 	ifstream fp;
 	fp.open(filename, ios::binary);
 	if (!fp)
@@ -162,25 +162,25 @@ void MysqlManager::readtexttomysql(const char* filename)
 		perror("open file error");
 		return;
 	}
-	char buf1[2];//╠ё╢Ф2вж╫зпео╒
-	char buf2[4];//╠ё╢Ф4вж╫зпео╒
-	char buf3[100];//╠ё╢Ф╣юб╥цШвж
+	char buf1[2];//О©╫О©╫О©╫О©╫2О©╫ж╫О©╫О©╫О©╫о╒
+	char buf2[4];//О©╫О©╫О©╫О©╫4О©╫ж╫О©╫О©╫О©╫о╒
+	char buf3[100];//О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫
 
-	node* p = new node();//╢╢╫╗node
+	node* p = new node();//О©╫О©╫О©╫О©╫node
 	char* name = new char[100];
 	p->name = name;
 	long long ret = 0;
-	//EOFйгнд╠╬нд╪Ч╫АйЬ╣д╠Йж╬║ётзнд╠╬нд╪Чжпё╛йЩ╬щйгртвж╥Ш╣дASC╒Р╢ЗбКж╣╣дпнй╫╢Ф╥её╛
-	//ASCII╢ЗбКж╣╣д╥╤н╖йг0║╚255ё╛EOF╣д16╫Ьжф╢ЗбКн╙0xFF(й╝╫Ьжфн╙-1)ё╛рР╢к©иртсцEOFвВн╙нд╪Ч╫АйЬ╠Йж╬║ё
-	//╣╚йгхГ╧Шнд╪Ч╦Яй╫н╙╤Ч╫Ьжфнд╪Чё╛╬м╡╩йй╨осцEOFю╢еп╤онд╪Ч╣╫╢О╫Ан╡акё╛
-	//рРн╙сп©идэнд╪Чжпр╡╢Фтзр╩╦ЖйЩ╬щн╙0xFFё╛уБяЫ╣╠╤ах║╣╫уБ╦ЖйЩ╬щйгё╛╬мнч╥╗еп╤ойг╣╫╢Онд╪Ч╫Ан╡
-	//╩╧йг╤ах║╣╫╣дйгнд╪Ч╣ддзхщак║ё
+	//EOFО©╫О©╫О©╫д╠О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫д╠О©╫ж╬О©╫О©╫О©╫О©╫О©╫д╠О©╫О©╫д╪О©╫О©╫пёО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╥О©╫О©╫О©╫ASCО©╫О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫О©╫й╫О©╫О©╫еёО©╫
+	//ASCIIО©╫О©╫О©╫О©╫ж╣О©╫д╥О©╫н╖О©╫О©╫0О©╫О©╫255О©╫О©╫EOFО©╫О©╫16О©╫О©╫О©╫ф╢О©╫О©╫О©╫н╙0xFF(й╝О©╫О©╫О©╫О©╫н╙-1)О©╫О©╫О©╫О©╫к©О©╫О©╫О©╫О©╫О©╫EOFО©╫О©╫н╙О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╬О©╫О©╫
+	//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫й╫н╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫О©╫м╡О©╫О©╫й╨О©╫О©╫О©╫EOFО©╫О©╫О©╫п╤О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫н╡О©╫кёО©╫
+	//О©╫О©╫н╙О©╫п©О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫р╡О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫н╙0xFFО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫гёО©╫О©╫О©╫О©╫ч╥О©╫О©╫п╤О©╫О©╫г╣О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫н╡
+	//О©╫О©╫О©╫г╤О©╫х║О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫к║О©╫
 	int i = 0;
 	while (!fp.eof())
 	{
 		fp.read(buf1, 2);
 		ret = fp.gcount();
-		//ret = fread(buf1, 2, 1, fp);//╤а║╟Ё╓╤х║╠
+		//ret = fread(buf1, 2, 1, fp);//О©╫О©╫О©╫О©╫О©╫О©╫О©╫х║О©╫
 		unsigned short size = 0;
 		//printf("%d\n", ret);
 		if (ret == 2)
@@ -192,10 +192,10 @@ void MysqlManager::readtexttomysql(const char* filename)
 			//cout << size << endl;
 			size -= 2;
 			fp.read(buf2, 4);
-			//if (ret = fread(buf2, 4, 1, fp))//╤а╣юб╥╠Ю╨е
+			//if (ret = fread(buf2, 4, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫
 			if ((ret = fp.gcount()) == 4)
 			{
-				if (ret != 4)//╢МнС╢╕юМ
+				if (ret != 4)//О©╫О©╫О©╫О©╫О©╫О©╫
 				{
 					delete(p);
 					perror("get LinkId error");
@@ -209,7 +209,7 @@ void MysqlManager::readtexttomysql(const char* filename)
 				p->LinkID = LinkId;
 				//cout << LinkId << endl;
 			}
-			//if (ret = fread(buf1, 2, 1, fp))//╤а╣юб╥цШЁфЁ╓╤х
+			//if (ret = fread(buf1, 2, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫фЁО©╫О©╫О©╫
 			fp.read(buf1, 2);
 			if ((ret = fp.gcount()) == 2)
 			{
@@ -226,7 +226,7 @@ void MysqlManager::readtexttomysql(const char* filename)
 				exit(1);
 			}
 
-			//if (ret = fread(buf2, 4, 1, fp))//╤а╣юб╥оЮ╧ьпео╒
+			//if (ret = fread(buf2, 4, 1, fp))//О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫о╒
 			fp.read(buf2, 4);
 			if ((ret = fp.gcount()) == 4)
 			{
@@ -248,7 +248,7 @@ void MysqlManager::readtexttomysql(const char* filename)
 				perror("get road information error");
 				exit(1);
 			}
-			//if (ret = fread(buf3, size, 1, fp))//╩Ях║╣юб╥цШЁф
+			//if (ret = fread(buf3, size, 1, fp))//О©╫О©╫х║О©╫О©╫б╥О©╫О©╫О©╫О©╫
 			fp.read(buf3, size);
 			if (size != 0)
 			{
@@ -257,37 +257,37 @@ void MysqlManager::readtexttomysql(const char* filename)
 					delete(p);
 					cout << "rest size:" << size << endl;
 					perror("get name error");
-					//в╒рБйм╥едз╢ФтымкЁЖ
+					//в╒О©╫О©╫О©╫м╥О©╫О©╫з╢О©╫О©╫О©╫О©╫кЁО©╫
 					exit(1);
 				}
 				size = 0;
 				size_t len = strlen(buf3);
-				strcpy_s(name, strlen(buf3) + 1, buf3);
+				strcpy(name,buf3);
 				//printf("len:%d\n", len);
 				name[len] = '\0';
 			}
 			else
 			{
-				strcpy_s(name, 10, "null");
+				strcpy(name,"null");
 			}
-			//╦Яй╫╩╞р╩лУйЩ╬щё╛╡╒╪схКsqlсО╬Д
-			//sprintf_s(str, 200,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
+			//О©╫О©╫й╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫щёО©╫О©╫О©╫О©╫О©╫О©╫О©╫sqlО©╫О©╫О©╫
+			//sprintf(str,"insert into roadinfo values( %d,%d,%d,%d,%d,%d,%d,%s);", record[i]->LinkID,record[i]->record_size
 			//	,record[i]->roadsize,record[i]->hasflag,record[i]->forkroad,record[i]->classnum,record[i]->information,record[i]->name);
 
 		// record_size Linkid    roadsize   hasflag  forkroad   classnum       roadname
 			if (i > 0 && i % 1000 == 0)
 			{
-				sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
+				sprintf(str,"%s(%d,%d,%d,%d,%d,'%s',%d,%d);", str, p->LinkID, p->classnum
 					, p->forkroad, p->hasflag, p->information,p->name, p->record_size, p->roadsize);
-				if (m_mysql->execute(str) == false)//╡ЕхКйЩ╬щ,ря╬╜спак
+				if (m_mysql->execute(str) == false)//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫я╬О©╫О©╫О©╫О©╫О©╫
 				{
 					cout << "data already exists" << endl;
 					return;
 				}
-				sprintf_s(str, 150, "insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
+				sprintf(str,"insert into roadinfo(LinkID,classnum,forkroad,hasflag,information,name,record_size,roadsize) values");
 			}
 			else
-				sprintf_s(str, 1024 * 1024, "%s(%d,%d,%d,%d,%d,'%s',%d,%d),", str, p->LinkID, p->classnum
+				sprintf(str,"%s(%d,%d,%d,%d,%d,'%s',%d,%d),", str, p->LinkID, p->classnum
 					, p->forkroad, p->hasflag, p->information, p->name, p->record_size, p->roadsize);
 			i++;
 		}
@@ -301,7 +301,7 @@ void MysqlManager::readtexttomysql(const char* filename)
 	{
 		int k=strlen(str);
 		str[k-1] = ';';
-		if (m_mysql->execute(str) == false)//╡ЕхКйЩ╬щ,ря╬╜спак
+		if (m_mysql->execute(str) == false)//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫я╬О©╫О©╫О©╫О©╫О©╫
 		{
 			cout << "insert error" << endl;
 			return;

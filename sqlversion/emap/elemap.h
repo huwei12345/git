@@ -1,8 +1,10 @@
-#ifndef MAPTEST
-#define MAPTEST
+#ifndef MAPTEST_H
+#define MAPTEST_H
 
 #include<iostream>
 #include<algorithm>
+#include<stdio.h>
+#include<string.h>
 #include<string>
 #include<vector>
 #include<fstream>
@@ -15,58 +17,58 @@
 //#define DE
 #define trans4(x) (x[0]<<24)&(0xff000000)|(x[1]<<16)&(0x00ff0000)|(x[2]<<8)&(0x0000ff00)|(x[3])&(0x000000ff)
 #define trans2(x) (x[1])&(0x00ff)|(x[0]<<8)&(0xff00)
-#define FNLIMIT 100  //µ±²éÑ¯forknumÐ¡ÓÚ30ÌõÏÔÊ¾£¬´óÓÚÊä³öµ½ÎÄ¼þ
-#define CNLIMIT 100  //Í¬ÉÏ
-#define NAMELIMIT 100 //Í¬ÉÏ
+#define FNLIMIT 100  //ï¿½ï¿½ï¿½ï¿½Ñ¯forknumÐ¡ï¿½ï¿½30ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+#define CNLIMIT 100  //Í¬ï¿½ï¿½
+#define NAMELIMIT 100 //Í¬ï¿½ï¿½
 
 using namespace std;
 
-//µ¥Ìõ¼ÇÂ¼½Úµã
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Úµï¿½
 class node {
 public:
-	unsigned short record_size;//2×Ö½Ú Size
-	unsigned int LinkID;//4×Ö½Ú LinkID
-	unsigned short roadsize;//2×Ö½Ú µÀÂ·Ãû³ÆSize
-	//unsigned int flag;//Ê¼µãNodeµÄÇé±¨
+	unsigned short record_size;//2ï¿½Ö½ï¿½ Size
+	unsigned int LinkID;//4ï¿½Ö½ï¿½ LinkID
+	unsigned short roadsize;//2ï¿½Ö½ï¿½ ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½Size
+	//unsigned int flag;//Ê¼ï¿½ï¿½Nodeï¿½ï¿½ï¿½é±¨
 	//31-8 Reserved
-	bool hasflag;//7 Â·ÏßÃû³ÆÓÐÎÞFlag
-	short forkroad;//6-4 ²íÂ·Êý
-	short classnum;//3-0 ½»²æLinkÁÐ±íÊ¾Class·¬ºÅ
+	bool hasflag;//7 Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Flag
+	short forkroad;//6-4 ï¿½ï¿½Â·ï¿½ï¿½
+	short classnum;//3-0 ï¿½ï¿½ï¿½ï¿½Linkï¿½Ð±ï¿½Ê¾Classï¿½ï¿½ï¿½ï¿½
 	unsigned int information;
-	char* name;//²»½¨ÒéÓÃstring ·Ñ¿Õ¼ä£¬string·â×°char*
-	void show();//ÏÔÊ¾Ò»Ìõ¼ÇÂ¼
+	char* name;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½string ï¿½Ñ¿Õ¼ä£¬stringï¿½ï¿½×°char*
+	void show();//ï¿½ï¿½Ê¾Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 };
 
-//¼Ì³Ðvector£¬·â×°¶Ô½ÚµãvectorµÄÒ»Ð©²Ù×÷
-class Record:public vector<node*> //¼ÇÂ¼,¼Ì³Ðvector
+//ï¿½Ì³ï¿½vectorï¿½ï¿½ï¿½ï¿½×°ï¿½Ô½Úµï¿½vectorï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½
+class Record:public vector<node*> //ï¿½ï¿½Â¼,ï¿½Ì³ï¿½vector
 {
 public:
 	//sort:
-	void bubblesort();//Ã°ÅÝ
+	void bubblesort();//Ã°ï¿½ï¿½
 	void selectsort();
 	int partition(int l, int r);
-	void quicksort(int l, int r);//quicksort,µÝ¹é²ã´ÎÌ«Éî
+	void quicksort(int l, int r);//quicksort,ï¿½Ý¹ï¿½ï¿½ï¿½Ì«ï¿½ï¿½
 	void insertsort();
-	void perdown(int i, int first, int last);//perdown,ÏòÏÂ½«µ±Ç°½Úµã·ÅÔÚÕýÈ·Î»ÖÃ
-	void make_heap(int first, int last);//½¨¶Ñ
+	void perdown(int i, int first, int last);//perdown,ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½Ç°ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·Î»ï¿½ï¿½
+	void make_heap(int first, int last);//ï¿½ï¿½ï¿½ï¿½
 	void heapsort();
 	void stlsort();
 	void merge(int l, int r, int mid);
-	void merge_sort(int l,int r);//¹é²¢ÅÅÐò
+	void merge_sort(int l,int r);//ï¿½é²¢ï¿½ï¿½ï¿½ï¿½
 	//search::
-	int search(node** res, unsigned int Linknum);//ËÑË÷Linknum
-	int searchcn(Record& res, unsigned short value);//ËÑË÷classnum
-	int searchfn(Record& res, unsigned short value);//ËÑË÷forknum
-	int search(Record& res, const char* name);//ËÑË÷Ãû³Æ£¬ÆÕÍ¨ËÑË÷
-	int binarysearch(node** res,int l, int r, unsigned int value);//ÕÛ°ë²éÕÒLinkID
-	//¶ÁÐ´
+	int search(node** res, unsigned int Linknum);//ï¿½ï¿½ï¿½ï¿½Linknum
+	int searchcn(Record& res, unsigned short value);//ï¿½ï¿½ï¿½ï¿½classnum
+	int searchfn(Record& res, unsigned short value);//ï¿½ï¿½ï¿½ï¿½forknum
+	int search(Record& res, const char* name);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+	int binarysearch(node** res,int l, int r, unsigned int value);//ï¿½Û°ï¿½ï¿½ï¿½ï¿½LinkID
+	//ï¿½ï¿½Ð´
 	void readtext(const char* filename);
 	void cupdate(vector<node*> &res,const char* filename);
 	void bupdate(vector<node*> &res,const char* filename);
-	void showall();//ÏÔÊ¾È«²¿¼ÇÂ¼
+	void showall();//ï¿½ï¿½Ê¾È«ï¿½ï¿½ï¿½ï¿½Â¼
 };
 
-//±¾³ÌÐò¶ÔMysql µÄ½øÒ»²½·â×°£¬±¾³ÌÐò¶ÔmysqlÁ¬½ÓËù×öµÄÒ»Ð©º¯Êý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Mysql ï¿½Ä½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mysqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½
 class MysqlManager
 {
 public:
@@ -85,28 +87,28 @@ public:
 	CMysql* getCMysql() { return m_mysql; }
 
 	void readtexttomysql(const char* filename);
-	void mysqlsort();//ÅÅÐò
-	void mysqlsearch();//²éÕÒ
-	void mysqlupdate(const char* filename);//¸üÐÂÎª×Ö·ûÎÄ¼þ
-	bool mysqlbupdate(const char* filename);//¸üÐÂÎª×Ö½ÚÎÄ¼þ£¬±¸·Ý
+	void mysqlsort();//ï¿½ï¿½ï¿½ï¿½
+	void mysqlsearch();//ï¿½ï¿½ï¿½ï¿½
+	void mysqlupdate(const char* filename);//ï¿½ï¿½ï¿½ï¿½Îªï¿½Ö·ï¿½ï¿½Ä¼ï¿½
+	bool mysqlbupdate(const char* filename);//ï¿½ï¿½ï¿½ï¿½Îªï¿½Ö½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	void mysqlinsert();//Ìí¼Ó
-	void mysqldelete();//É¾³ý
-	void mysqlmodify();//ÐÞ¸Ä
+	void mysqlinsert();//ï¿½ï¿½ï¿½ï¿½
+	void mysqldelete();//É¾ï¿½ï¿½
+	void mysqlmodify();//ï¿½Þ¸ï¿½
 	
-	bool mysqlshowall();//ÏÔÊ¾È«²¿
-	bool mysqlread(const char* filename);//»Ö¸´
-	void readRecord(Record& record);//¶Áµ½RecordÖÐ
+	bool mysqlshowall();//ï¿½ï¿½Ê¾È«ï¿½ï¿½
+	bool mysqlread(const char* filename);//ï¿½Ö¸ï¿½
+	void readRecord(Record& record);//ï¿½ï¿½ï¿½ï¿½Recordï¿½ï¿½
 
 	bool writefile(QueryResult* pResult, const char* pathname);
 	bool writefile(MYSQL_RES* result, const char* pathname, int k);
 
 private:
-	CMysql* m_mysql;//ÊÇMysqlÁ¬½ÓµÄ·â×°£¬·â×°ÁËmysqlµ×²ãapi£¬²éÑ¯¡¢Ö´ÐÐ¡¢½á¹û½á¹¹
+	CMysql* m_mysql;//ï¿½ï¿½Mysqlï¿½ï¿½ï¿½ÓµÄ·ï¿½×°ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½mysqlï¿½×²ï¿½apiï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Ö´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹
 };
 
 
-class Window  //´°¿ÚÀà
+class Window  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 public:
 	void normalwindow(Record& record);

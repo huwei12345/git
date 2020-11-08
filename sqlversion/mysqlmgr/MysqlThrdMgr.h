@@ -1,8 +1,8 @@
-#pragma once
-
+#ifndef MYSQLMGR_H
+#define MYSQLMGR_H
 #include "MysqlTask.h"
 #include "MysqlThrd.h"
-//MySQLÏß³Ì¹ÜÀí£¬Ïß³Ì³Ø£¿
+//MySQLï¿½ß³Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø£ï¿½
 class CMysqlThrdMgr
 {
 public:
@@ -29,8 +29,8 @@ public:
     }
 
 protected:
-    static const uint32_t m_dwThreadsCount = 9;//Ïß³ÌÊý
-    CMysqlThrd            m_aoMysqlThreads[m_dwThreadsCount + 1];//Ïß³ÌÊý×é
+    static const uint32_t m_dwThreadsCount = 9;//ï¿½ß³ï¿½ï¿½ï¿½
+    CMysqlThrd            m_aoMysqlThreads[m_dwThreadsCount + 1];//ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
-
+#endif
